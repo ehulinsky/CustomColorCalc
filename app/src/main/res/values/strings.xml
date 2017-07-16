@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Calculator</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="credits">Developed by Ethan Hulinsky</string>
+    <string name="action_info">Info</string>
+    <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="prefedit_primary_color">Primary Color</string>
+    <string name="prefedit_primary_color_summary">Hex color value of button text, numbers, navigation, etc.</string>
+    <string name="prefedit_background_color">Background Color</string>
+    <string name="prefedit_background_color_summary">Hex color value of background, action buttons, app name</string>
+    <string name="default_primary_color">#000000</string>
+    <string name="default_background_color">#ffffff</string>
+    <string name="pref_primary_color">Settings.primaryColor</string>
+    <string name="pref_background_color">Settings.backgroundColor</string>
+    <string name="invalid_color">Invalid color</string>
 </resources>

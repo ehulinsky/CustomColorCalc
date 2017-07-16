@@ -3,10 +3,10 @@ package com.sniluhky.calculator;
 /**
  * Created by Hulinsky Family on 6/23/2017.
  */
-
+/*
 public class Calculator {
 
-    public void putNumber(long num) {
+    public void putNumber(double num) {
         firstNum=false;
         doOperation(operation,num);
     }
@@ -27,7 +27,7 @@ public class Calculator {
         SET
     }
 
-    public long getResult() {
+    public double getResult() {
         return result;
     }
 
@@ -38,7 +38,7 @@ public class Calculator {
 
     }
 
-    private void doOperation(Operation op,long num) {
+    private void doOperation(Operation op,double num) {
         switch (op)
         {
             case ADD:
@@ -62,6 +62,7 @@ public class Calculator {
         }
     }
     private boolean firstNum=true;
-    private long result =0;
+    private double result =0;
     private Operation operation=Operation.SET;
 }
+*/

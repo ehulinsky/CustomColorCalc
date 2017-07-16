@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:title="@string/prefedit_primary_color"
+        android:summary="@string/prefedit_primary_color_summary"
+        android:key="@string/pref_primary_color"
+        android:defaultValue="@string/default_primary_color"
+        />
+    <EditTextPreference
+        android:title="@string/prefedit_background_color"
+        android:summary="@string/prefedit_background_color_summary"
+        android:key="@string/pref_background_color"
+        android:defaultValue="@string/default_background_color"
+        />
+</PreferenceScreen>
