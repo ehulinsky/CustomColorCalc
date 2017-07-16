@@ -43,6 +43,93 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonNegative"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="C"
+                android:background="@drawable/blank"
+                android:onClick="clear"/>
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonPi"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="π"
+                android:background="@drawable/blank"
+                android:onClick="setToPi"/>
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonE"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="e"
+                android:background="@drawable/blank"
+                android:onClick="setToEuler"/>
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonModulus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="mod"
+                android:background="@drawable/blank"
+                android:onClick="setOperation"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonClear"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="+/-"
+                android:background="@drawable/blank"
+                android:onClick="toggleNegative"/>
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonFactorial"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="!"
+                android:background="@drawable/blank"
+                android:onClick="factorial"/>
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonSquareRoot"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="√"
+                android:background="@drawable/blank"
+                android:onClick="squareRoot"/>
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonPower"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="^"
+                android:background="@drawable/blank"
+                android:onClick="setOperation"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <Button
                 android:textColor="@color/colorPrimary"
@@ -50,7 +137,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="9"
+                android:text="7"
                 android:onClick="enterDigit"
                 android:background="@drawable/blank" />
 
@@ -69,7 +156,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="7"
+                android:text="9"
                 android:onClick="enterDigit"
                 android:background="@drawable/blank"/>
 
@@ -98,7 +185,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="6"
+                android:text="4"
                 android:onClick="enterDigit"
                 android:background="@drawable/blank"/>
 
@@ -118,7 +205,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="4"
+                android:text="6"
                 android:onClick="enterDigit"
                 android:background="@drawable/blank"/>
 
@@ -147,7 +234,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="3"
+                android:text="1"
                 android:onClick="enterDigit"
                 android:background="@drawable/blank"/>
 
@@ -167,7 +254,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="1"
+                android:text="3"
                 android:onClick="enterDigit"
                 android:background="@drawable/blank"/>
 
@@ -195,16 +282,6 @@
 
             <Button
                 android:textColor="@color/colorPrimary"
-                android:id="@+id/button0"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="0"
-                android:onClick="enterDigit"
-                android:background="@drawable/blank"/>
-
-            <Button
-                android:textColor="@color/colorPrimary"
                 android:id="@+id/buttonDecimal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -213,6 +290,18 @@
                 android:onClick="setDecimalMode"
                 android:background="@drawable/blank"
                 />
+
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/button0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0"
+                android:onClick="enterDigit"
+                android:background="@drawable/blank"/>
+
+
 
             <Button
                 android:textColor="@color/colorPrimary"
@@ -237,93 +326,6 @@
 
 
         </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonClear"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="C"
-            android:background="@drawable/blank"
-            android:onClick="clear"/>
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonFactorial"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="!"
-            android:background="@drawable/blank"
-            android:onClick="factorial"/>
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonSquareRoot"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="√"
-            android:background="@drawable/blank"
-            android:onClick="squareRoot"/>
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonPower"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="^"
-            android:background="@drawable/blank"
-            android:onClick="setOperation"/>
-
-        </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonNegative"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="+/-"
-            android:background="@drawable/blank"
-            android:onClick="toggleNegative"/>
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonPi"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="π"
-            android:background="@drawable/blank"
-            android:onClick="setToPi"/>
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonE"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="e"
-            android:background="@drawable/blank"
-            android:onClick="setToEuler"/>
-        <Button
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/buttonModulus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="mod"
-            android:background="@drawable/blank"
-            android:onClick="setOperation"/>
-        </LinearLayout>
-
 
     </LinearLayout>
 
