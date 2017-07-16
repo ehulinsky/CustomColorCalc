@@ -4,15 +4,8 @@ This is my first android app I have ever made, and I am 14 years old, so the cod
 
 # Screenshots
 
-Default colors:
-![black and white theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/blackwhite.png)
-
-Editing colors:
-![changing theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/changecolorhex.png)
-
-After Change (GO HUSKERS!):
-![red and white theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/redwhite.png)
-
-Black and blue colors:
-![black and blue theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/blackblue.png)
+![black and white theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/blackwhite.png | width=100)
+![changing theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/changecolorhex.png | width=100)
+![red and white theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/redwhite.png | width=100)
+![black and blue theme](https://raw.githubusercontent.com/Huskymuffin/CustomColorCalc/master/screenshots/blackblue.png | width=100)
 
