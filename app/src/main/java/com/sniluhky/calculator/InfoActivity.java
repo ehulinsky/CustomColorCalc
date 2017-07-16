@@ -37,7 +37,7 @@ public class InfoActivity extends AppCompatActivity {
      public void updateColors() {
          TextView credits=(TextView) findViewById(R.id.credits);
          credits.setTextColor(settings.getPrimaryColor());
-         findViewById(android.R.id.content).setBackgroundColor(settings.getBackgroundColor());git
+         findViewById(android.R.id.content).setBackgroundColor(settings.getBackgroundColor());
          colorChanger.updateColors();
     }
 }
