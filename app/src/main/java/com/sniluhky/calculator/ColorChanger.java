@@ -27,28 +27,32 @@ public class ColorChanger {
         settings=new Settings((Context)activity);
     }
 
-    public void updateColors() {
+    public void setTextAndIconColor(int color) {
+        ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+        //change color of action bar title
+        Spannable text = new SpannableString(actionBar.getTitle());
+        text.setSpan(new ForegroundColorSpan(color), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        actionBar.setTitle(text);
+        //change color of back arrow
+        Drawable upArrow = activity.getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        ((AppCompatActivity)activity).getSupportActionBar().setHomeAsUpIndicator(upArrow);
+    }
+
+    public void setTopBottomBarsColor(int color) {
+        //change color of navigation bar and status bar
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window=activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(settings.getPrimaryColor());
-            window.setNavigationBarColor(settings.getPrimaryColor());
+            window.setStatusBarColor(color);
+            window.setNavigationBarColor(color);
 
         }
 
-        //change color of back arrow
-        Drawable upArrow = activity.getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(settings.getBackgroundColor(), PorterDuff.Mode.SRC_ATOP);
-        ((AppCompatActivity)activity).getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
         //change color of action bar
-        ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(settings.getPrimaryColor()));
+       ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
-        //change color of action bar title
-        Spannable text = new SpannableString(actionBar.getTitle());
-        text.setSpan(new ForegroundColorSpan(settings.getBackgroundColor()), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        actionBar.setTitle(text);
     }
 }

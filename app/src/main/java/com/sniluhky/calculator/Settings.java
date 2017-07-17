@@ -19,6 +19,7 @@ public class Settings
     public Settings(Context ctx)
     {
         context=ctx;
+        PreferenceManager.setDefaultValues(ctx,R.xml.preferences,false);
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
     public int getPrimaryColor() {

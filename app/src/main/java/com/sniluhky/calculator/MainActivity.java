@@ -31,13 +31,12 @@ public class MainActivity extends AppCompatActivity {
         display=(CalculatorDisplay)getFragmentManager().
                 findFragmentById(R.id.display_fragment);
         settings=new Settings(this);
+        colorChanger=new ColorChanger(this);
         updateColors();
-        PreferenceManager.setDefaultValues(this,R.xml.preferences,false);
-        prefs=PreferenceManager.getDefaultSharedPreferences(this);
-
     }
     public void onResume() {
         super.onResume();
+        //update colors which may have been changed in preferences screen
         updateColors();
     }
 
@@ -344,28 +343,14 @@ public class MainActivity extends AppCompatActivity {
        ((Button) findViewById(R.id.buttonE)).setTextColor(settings.getPrimaryColor());
        ((Button) findViewById(R.id.buttonNegative)).setTextColor(settings.getPrimaryColor());
        ((Button) findViewById(R.id.button0)).setTextColor(settings.getPrimaryColor());
-       ActionBar actionBar =getSupportActionBar();
-       actionBar.setBackgroundDrawable(new ColorDrawable(settings.getPrimaryColor()));
-       Spannable text = new SpannableString(actionBar.getTitle());
-       text.setSpan(new ForegroundColorSpan(settings.getBackgroundColor()), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-       actionBar.setTitle(text);
-       if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-           Window window = getWindow();
-           window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-           window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-           window.setStatusBarColor(settings.getPrimaryColor());
-           window.setNavigationBarColor(settings.getPrimaryColor());
-
-           findViewById(android.R.id.content).setBackgroundColor(settings.getBackgroundColor());
-           Drawable border=getResources().getDrawable(R.drawable.back);
-           border.setColorFilter(settings.getPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
-
-       }
+       findViewById(android.R.id.content).setBackgroundColor(settings.getBackgroundColor());
+        colorChanger.setTopBottomBarsColor(settings.getPrimaryColor());
+        colorChanger.setTextAndIconColor(settings.getBackgroundColor());
 
     }
     private Settings settings;
     private CalculatorDisplay display;
-    private SharedPreferences prefs;
+    private ColorChanger colorChanger;
 
     private Operation operation;
     private double firstNum=0;

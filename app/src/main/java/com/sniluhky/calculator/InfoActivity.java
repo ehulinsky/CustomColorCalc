@@ -31,13 +31,14 @@ public class InfoActivity extends AppCompatActivity {
         TextView credits=(TextView) findViewById(R.id.credits);
         credits.setTextColor(settings.getPrimaryColor());
         updateColors();
-        PreferenceManager.setDefaultValues(this,R.xml.preferences,false);
+        //PreferenceManager.setDefaultValues(this,R.xml.preferences,false);
     }
 
      public void updateColors() {
          TextView credits=(TextView) findViewById(R.id.credits);
          credits.setTextColor(settings.getPrimaryColor());
          findViewById(android.R.id.content).setBackgroundColor(settings.getBackgroundColor());
-         colorChanger.updateColors();
+         colorChanger.setTextAndIconColor(settings.getBackgroundColor());
+         colorChanger.setTopBottomBarsColor(settings.getPrimaryColor());
     }
 }
