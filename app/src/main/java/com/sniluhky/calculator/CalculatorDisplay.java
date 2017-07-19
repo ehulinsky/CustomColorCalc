@@ -74,6 +74,31 @@ public class CalculatorDisplay extends Fragment {
             }
         }
     }
+
+    public void removeDigit() {
+
+        if(!decimalMode)
+        {
+           number=((long) number)/10;
+        }
+        else
+        {
+            number=Double.valueOf(formatDouble(number).substring(0,formatDouble(number).length()-1));
+            if(currentFractionDigits>0)
+            {
+                currentFractionDigits -= 1;
+            }
+            else {
+                decimalMode=false;
+            }
+            if(currentFractionDigits==0)
+            {
+                decimalTyped=false;
+            }
+        }
+        reprint();
+
+    }
     public void toggleDecimalMode() {
     if(!error) {
         if (!decimalTyped) {

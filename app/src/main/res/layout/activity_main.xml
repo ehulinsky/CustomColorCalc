@@ -49,9 +49,18 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="C"
+                android:text="CLR"
                 android:background="@drawable/blank"
                 android:onClick="clear"/>
+            <Button
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/buttonDelete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="DEL"
+                android:background="@drawable/blank"
+                android:onClick="deleteDigit"/>
             <Button
                 android:textColor="@color/colorPrimary"
                 android:id="@+id/buttonPi"
@@ -322,6 +331,7 @@
                 android:text="-"
                 android:background="@drawable/blank"
                 android:onClick="setOperation"/>
+
 
 
 

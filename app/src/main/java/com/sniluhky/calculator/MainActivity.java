@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    public void deleteDigit(View view) {
+        display.removeDigit();
+    }
     public void setDecimalMode(View view) {
         if(!equalClicked) {
             if(operatorClicked)
@@ -342,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
        ((Button) findViewById(R.id.buttonPi)).setTextColor(settings.getPrimaryColor());
        ((Button) findViewById(R.id.buttonE)).setTextColor(settings.getPrimaryColor());
        ((Button) findViewById(R.id.buttonNegative)).setTextColor(settings.getPrimaryColor());
-       ((Button) findViewById(R.id.button0)).setTextColor(settings.getPrimaryColor());
+       ((Button) findViewById(R.id.buttonDelete)).setTextColor(settings.getPrimaryColor());
        findViewById(android.R.id.content).setBackgroundColor(settings.getBackgroundColor());
         colorChanger.setTopBottomBarsColor(settings.getPrimaryColor());
         colorChanger.setTextAndIconColor(settings.getBackgroundColor());
