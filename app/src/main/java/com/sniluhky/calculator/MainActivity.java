@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
         colorChanger=new ColorChanger(this);
         updateColors();
     }
+    private enum State {
+        CLEARED,
+        FIRST_NUM_DIGIT_ENTERED,
+        OPERATOR_ENTERED,
+        SECOND_NUM_DIGIT_ENTERED,
+        EQUALS_CLICKED
+    }
     public void onResume() {
         super.onResume();
         //update colors which may have been changed in preferences screen
@@ -50,61 +57,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enterDigit(View view) {
-        if(!equalClicked) {
-            if(operatorClicked)
-            {
+        if(state!=State.EQUALS_CLICKED) {
+            if (state == State.OPERATOR_ENTERED) {
                 display.reset();
-                operatorClicked=false;
-                secondNumDigitEntered=true;
+                state = State.SECOND_NUM_DIGIT_ENTERED;
             }
-            digitEntered = true;
+            else if(state==State.CLEARED)
+            {
+                state=State.FIRST_NUM_DIGIT_ENTERED;
+            }
             if (hilitId != 0) {
                 ((Button) findViewById(hilitId)).setBackground(getDrawable(R.drawable.blank));
             }
 
             display.putDigit(Integer.parseInt((String) ((Button) view).getText()));
         }
-
     }
     public void deleteDigit(View view) {
         display.removeDigit();
     }
     public void setDecimalMode(View view) {
-        if(!equalClicked) {
-            if(operatorClicked)
-            {
+        if(state!=State.EQUALS_CLICKED) {
+            if (state == State.OPERATOR_ENTERED) {
                 display.reset();
-                operatorClicked=false;
-                secondNumDigitEntered=true;
+                state = State.SECOND_NUM_DIGIT_ENTERED;
+            }
+            else if(state==State.CLEARED)
+            {
+                state=State.FIRST_NUM_DIGIT_ENTERED;
+            }
+            if (hilitId != 0) {
+                ((Button) findViewById(hilitId)).setBackground(getDrawable(R.drawable.blank));
             }
             display.toggleDecimalMode();
         }
     }
 
     public void setOperation(View view) {
-        if(digitEntered) {
+        if(state!=State.CLEARED) {
 
-            if(!operatorClicked) {
-                if (!secondNumEditable) {
+            //if operator was already entered, dont put result again, just change operator
+            if(state!=State.OPERATOR_ENTERED) {
+                if (state==State.FIRST_NUM_DIGIT_ENTERED) {
                     firstNum = display.getDisplayedNumber();
-                    secondNumEditable = true;
-                    secondNumDigitEntered=false;
+                    state=State.OPERATOR_ENTERED;
                 }
-                else if(equalClicked)
-                {
-                    equalClicked=false;
-                    secondNumDigitEntered=false;
+                if(state==State.EQUALS_CLICKED) {
+                    state=State.OPERATOR_ENTERED;
                 }
-                else {
+                else if(state==State.SECOND_NUM_DIGIT_ENTERED) {
                     secondNum = display.getDisplayedNumber();
                     display.putNumber(getResult(firstNum, operation, secondNum));
                     firstNum = display.getDisplayedNumber();
-                    secondNumDigitEntered=false;
+                    state=State.OPERATOR_ENTERED;
                 }
 
             }
 
-            operatorClicked=true;
             if (hilitId != 0) {
                 ((Button) findViewById(hilitId)).setBackground(getDrawable(R.drawable.blank));
             }
@@ -134,38 +143,39 @@ public class MainActivity extends AppCompatActivity {
     }
     public void equals(View view) {
 
-        if(digitEntered&&secondNumDigitEntered){
-
+        if(state==State.SECOND_NUM_DIGIT_ENTERED){
                 /*
                 only sets the second num the first time because if
                 user clicks multiple times it should do same thing
                 example they press 1, +, 1, then every time they press
                 equals it should add one to the current value
                 */
-                if (!equalClicked) {
-                    secondNum = display.getDisplayedNumber();
-                }
+                secondNum = display.getDisplayedNumber();
                 display.putNumber(getResult(firstNum, operation, secondNum));
                 firstNum = display.getDisplayedNumber();
         }
-        else {
+        else if(state==State.EQUALS_CLICKED) {
+            //second num should be set from equal being clicked
+            display.putNumber(getResult(firstNum, operation, secondNum));
+            firstNum = display.getDisplayedNumber();
+        }
             if (hilitId != 0) {
                 ((Button) findViewById(hilitId)).setBackground(getDrawable(R.drawable.blank));
             }
-        }
-        operatorClicked=false;
-        equalClicked = true;
+        state=State.EQUALS_CLICKED;
     }
 
     public void setToPi(View view) {
-        if(!equalClicked){
-            if(operatorClicked)
+        if(state!=State.EQUALS_CLICKED){
+            if(state==State.OPERATOR_ENTERED)
             {
                 display.reset();
-                operatorClicked=false;
-                secondNumDigitEntered=true;
+                state=State.SECOND_NUM_DIGIT_ENTERED;
             }
-            digitEntered = true;
+            else if(state==State.CLEARED)
+            {
+                state=State.FIRST_NUM_DIGIT_ENTERED;
+            }
             if (hilitId != 0) {
                 ((Button) findViewById(hilitId)).setBackground(getDrawable(R.drawable.blank));
             }
@@ -175,21 +185,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setToEuler(View view) {
-        if(!equalClicked){
-            if(operatorClicked)
+        if(state!=State.EQUALS_CLICKED){
+            if(state==State.OPERATOR_ENTERED)
             {
                 display.reset();
-                operatorClicked=false;
-                secondNumDigitEntered=true;
+                state=State.SECOND_NUM_DIGIT_ENTERED;
             }
-            digitEntered = true;
+            else if(state==State.CLEARED)
+            {
+                state=State.FIRST_NUM_DIGIT_ENTERED;
+            }
             if (hilitId != 0) {
                 ((Button) findViewById(hilitId)).setBackground(getDrawable(R.drawable.blank));
             }
 
             display.putNumber(Math.E);
         }
-
     }
 
     public void toggleNegative(View view) {
@@ -199,10 +210,7 @@ public class MainActivity extends AppCompatActivity {
         display.reset();
         firstNum=0;
         secondNum=0;
-        operatorClicked=false;
-        secondNumEditable=false;
-        digitEntered=false;
-        equalClicked=false;
+        state=State.CLEARED;
         if (hilitId != 0) {
             ((Button) findViewById(hilitId)).setBackground(getDrawable(R.drawable.blank));
         }
@@ -268,16 +276,16 @@ public class MainActivity extends AppCompatActivity {
     public void squareRoot(View view) {
         if(display.getDisplayedNumber()>=0) {
 
-            display.putNumber(Math.sqrt(display.getDisplayedNumber()));
-            if(!secondNumDigitEntered) {
+
+            if(state==State.FIRST_NUM_DIGIT_ENTERED) {
                 firstNum = display.getDisplayedNumber();
+                display.putNumber(Math.sqrt(display.getDisplayedNumber()));
             }
-            else
+            else if(state==State.SECOND_NUM_DIGIT_ENTERED)
             {
                 secondNum = display.getDisplayedNumber();
+                display.putNumber(Math.sqrt(display.getDisplayedNumber()));
             }
-            equalClicked=false;
-
         }
         else
         {
@@ -303,13 +311,14 @@ public class MainActivity extends AppCompatActivity {
             {
                 result=-result;
             }
-            display.putNumber(result);
-            if(!secondNumEditable) {
+
+            if(state==State.FIRST_NUM_DIGIT_ENTERED) {
+                display.putNumber(result);
                 firstNum = display.getDisplayedNumber();
             }
-            else
+            else if(state==State.SECOND_NUM_DIGIT_ENTERED)
             {
-
+                display.putNumber(result);
                 secondNum = display.getDisplayedNumber();
             }
         }
@@ -359,11 +368,7 @@ public class MainActivity extends AppCompatActivity {
     private double firstNum=0;
     private double secondNum=0;
 
-    private boolean operatorClicked=false;
-    private boolean secondNumEditable=false;
-    private boolean digitEntered=false;
-    private boolean secondNumDigitEntered=false;
-    private boolean equalClicked=false;
+    private State state=State.CLEARED;
 
     private int hilitId=0; //id of operation button that is highlighted
 }
